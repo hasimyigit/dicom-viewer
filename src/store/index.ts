@@ -2,14 +2,14 @@ import { create } from "zustand";
 import { Patient, ShapeType } from "../types";
 
 type StateType = {
-  selectedPatient: null | Patient;
-  patients: (Patient & { shapes?: ShapeType[] })[] | null;
+  selectedPatientId:  string | null;
+  patients: (Patient & { shapes?: ShapeType[] })[];
 };
 
 type ActionType = {
-  selectPatient: (patient: Patient) => void;
+  selectPatient: (patientId: string) => void;
   addPatient: (patient: Patient) => void;
-  getPatientById: (id: string) => (Patient & { shapes?: ShapeType[] }) | null;
+  getPatientById: (id: string) => (Patient & { shapes?: ShapeType[] }) | undefined;
   addShapeToPatient: (patientId: string, shape: ShapeType) => void;
   removeShapeFromPatient: (patientId: string, shapeId: string) => void;
 };
@@ -17,25 +17,25 @@ type ActionType = {
 type Store = StateType & ActionType;
 
 const defaultInitState: StateType = {
-  selectedPatient: null,
-  patients: null,
+  selectedPatientId: null,
+  patients: [],
 };
 
 export const useStore = create<Store>((set, get) => ({
   ...defaultInitState,
 
-  selectPatient: (patient: Patient) =>
-    set(() => ({ selectedPatient: patient })),
+  selectPatient: (patientId: string) =>
+    set(() => ({ selectedPatientId: patientId })),
 
   addPatient: (patient: Patient) =>
     set((state) => ({ patients: [...(state.patients || []), patient] })),
 
-  getPatientById: (id: string) => get().patients?.find((p) => p.id === id) || null,
+  getPatientById: (id: string) => get().patients?.find((p) => p.id === id),
 
   addShapeToPatient: (patientId: string, shape: ShapeType) =>
     
     set((state) => ({
-      patients: state.patients?.map((patient) =>
+      patients: state.patients.map((patient) =>
         patient.id === patientId
           ? { ...patient, shapes: [...(patient.shapes || []), shape] }
           : patient
@@ -44,7 +44,7 @@ export const useStore = create<Store>((set, get) => ({
 
   removeShapeFromPatient: (patientId: string, shapeId: string) =>
     set((state) => ({
-      patients: state.patients?.map((patient) =>
+      patients: state.patients.map((patient) =>
         patient.id === patientId
           ? {
               ...patient,
