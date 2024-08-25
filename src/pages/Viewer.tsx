@@ -56,7 +56,7 @@ export const Viewer = () => {
           <Toolbar toggleTool={toggleTool} onToggle={handleActivateRoiTool} />
           <PatientDetails patient={findedPatient as Patient} align="flex-row" />
         </div>
-        <div ref={elementRef} className="bg-black w-full h-[calc(100vh-8.3rem)]" />
+        <div ref={elementRef} className="bg-black w-full h-[calc(100vh-12rem)] md:h-[calc(100vh-11rem)]" />
       </div>
       <div className="p-6 md:w-[30%] w-[50%]">
         <ShapeList shapes={findedPatient?.shapes || []} onRemove={handleRemoveShape} />

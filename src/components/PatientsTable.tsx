@@ -2,6 +2,7 @@
 import { Patient } from '../types';
 import { ScanEye } from 'lucide-react';
 import Table from './common/Table';
+import { memo } from 'react';
 
 type TableProps = {
     data: Patient[];
@@ -47,4 +48,4 @@ const PatientsTable = ({ data, handleViwer, onSelect }: TableProps) => {
   )
 }
 
-export default PatientsTable
+export default memo(PatientsTable)

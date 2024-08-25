@@ -1,9 +1,10 @@
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useCallback, useState } from "react";
 import { mockData } from "../constant/data";
 import { Patient } from "../types";
 import { useNavigate } from "react-router-dom";
 import { useStore } from "../store";
 import PatientsTable from "../components/PatientsTable";
+import { Loader } from "lucide-react";
 
 const PatientDetailsModal = lazy(
   () => import("../components/PatientDetailsModal")
@@ -14,21 +15,24 @@ const Home = () => {
   const { selectPatient, addPatient, getPatientById } = useStore();
   const navigate = useNavigate();
 
-  const handleSelectPatient = (patient: Patient) => {
+  const handleSelectPatient = useCallback((patient: Patient) => {
     setSelectedPatient(patient);
     setModalOpen(true);
-  };
+  }, []);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setModalOpen(false);
     setSelectedPatient(null);
-  };
+  }, []);
 
-  const handleViwer = (patient: Patient) => {
-    selectPatient(patient.id);
-    !getPatientById(patient.id) && addPatient(patient);
-    navigate("/view");
-  };
+  const handleViwer = useCallback(
+    (patient: Patient) => {
+      selectPatient(patient.id);
+      !getPatientById(patient.id) && addPatient(patient);
+      navigate("/view");
+    },
+    [selectPatient]
+  );
 
   return (
     <>
@@ -39,7 +43,7 @@ const Home = () => {
       />
       <Suspense
         fallback={
-          <p>loading..</p>
+          <Loader className="animate-spin z-10 fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />
         }
       >
         {selectedPatient && (

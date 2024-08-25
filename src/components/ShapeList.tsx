@@ -7,7 +7,7 @@ export const ShapeList = ({ shapes, onRemove }: Props) => (
     {shapes.length > 0 && (
       <h3 className="py-4 font-semibold text-zinc-950 mt-14 md:mt-0">Seçimler</h3>
     )}
-    <div className="flex flex-col gap-4 max-h-[calc(100vh-11rem)] overflow-y-scroll overflow-x-hidden">
+    <div className="flex flex-col gap-4 max-h-[calc(100vh-15rem)] overflow-y-scroll overflow-x-hidden">
       {shapes.map((selection, i) => (
         <ul
           key={i}
