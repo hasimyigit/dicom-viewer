@@ -1,50 +1,53 @@
-# React + TypeScript + Vite
+# DICOM Viewer Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a web application to view and manage DICOM (Digital Imaging and Communications 
+in Medicine) images of Patients. It is developed using React, CornerstoneJS and Zustand.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Draw and measure on DICOM images
+- Interact with ROI (Region of Interest) tools
+- Open modal windows to examine the selected items in the table in detail.
+- Save the drawings made on the DICOM images of each patient and redraw them repeatedly.
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Technologies
 
-- Configure the top-level `parserOptions` property like this:
+- **React**: User interface components
+- **CornerstoneJS**: Image processing and tools for DICOM images
+- **Zustand**: State management
+- **Tailwind CSS**: Styling and design
+- **React Router DOM**: Routing
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Usage
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+1. **Home Page**
+   - Displays a table listing patients.
+   - Click on a table row to access details for each patient.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+2. **Viewer**
+   - View DICOM images for the selected patient.
+   - Interact with ROI tools and perform measurements.
+   - Move your drawings to state and list your Drawing data.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+
+## Components
+
+- **Table**: A general data table component.
+- **Modal**: A general modal window component.
+- **PatientsTable**: Displays patient data in a table format.
+- **PatientDetailsModal**: Shows patient details in a modal window.
+- **Viewer**: The main component for viewing DICOM images.
+
+## Coding Standards
+
+- **Clean Code**: Writing clean and maintainable code.
+- **Component Reusability**: Creating reusable components.
+- **State Management**: Centralized state management with Zustand.
+- **Custom Hooks**: Reduce code duplication, improve code quality and increase productivity.
+
+
+
+## Contact
+
+For questions and feedback, please contact [hasimyigitt@gmail.com](mailto:hasimyigitt@gmail.com).
