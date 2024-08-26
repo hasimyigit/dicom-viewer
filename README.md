@@ -36,8 +36,8 @@ in Medicine) images of Patients. It is developed using React, CornerstoneJS and 
 - **Table**: A general data table component.
 - **Modal**: A general modal window component.
 - **PatientsTable**: Displays patient data in a table format.
-- **PatientDetailsModal**: Shows patient details in a modal window.
-- **Viewer**: The main component for viewing DICOM images.
+- **PatientDetailsModal**: Shows patient details in a modal window.(lazy load)
+- **Viewer**: The main component for viewing DICOM images.(lazy load)
 
 ## Coding Standards
 
